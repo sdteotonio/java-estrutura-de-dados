@@ -10,32 +10,53 @@ package BrincandoComPilhaEFil;
  * @author Sèrgio Davi
  */
 public class FilaComArray implements Fila_IF{
-    private int[] vetorAUX = new int[3];
-    private int head=0,tail=0;
+    private int[] vetorAUX = new int[10];
+    private int comeco=0,fim=-1,elementos;
 
     @Override
     public void enqueue(int element) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isFull()){
+            throw new  Exception("Fila esta cheia!");
+        }else{
+            if(fim == vetorAUX.length-1){
+                fim =-1;
+            }
+            fim++;
+            vetorAUX[fim]=element;
+            elementos++;
+        }
     }
 
     @Override
     public int dequeue() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()){
+            throw new Exception("Fila estra vazia");
+        }
+        int temporario = vetorAUX[comeco++];
+        if(comeco == vetorAUX.length){
+            comeco= 0;
+        }
+        elementos--;
+        return temporario;
     }
 
     @Override
     public int head() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()){
+            throw new Exception("Fila estra vazia");
+        }
+        return vetorAUX[comeco];
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+       return elementos==0;   
     }
 
     @Override
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return elementos==vetorAUX.length;
     }
     
     

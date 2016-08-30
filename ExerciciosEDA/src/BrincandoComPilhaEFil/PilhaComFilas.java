@@ -10,30 +10,59 @@ package BrincandoComPilhaEFil;
  * @author Sèrgio Davi
  */
 public class PilhaComFilas implements Pilha_IF{
-
+    private FilaComArray f1 = new FilaComArray();
+    private FilaComArray f2 = new FilaComArray();
+    private int topo=-1;
     @Override
     public void push(int element) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      if(isFull()){
+        throw new Exception("Pilha esta cheia");
+      }
+      f1.enqueue(element);
+      topo++;
     }
 
     @Override
     public int pop() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()){
+            throw new Exception("Pilha esta vazia");
+        }
+        int temp=0;
+        for(int i = 0; i <= topo; i++){
+           f2.enqueue(temp =f1.dequeue());
+           
+        }
+        for(int i=0;i<=topo;i++){
+            int atual = f2.dequeue();
+            if(atual != temp){
+                f1.enqueue(atual);
+            }
+        }
+        topo--;
+        return temp;
     }
 
     @Override
     public int top() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()){
+            throw new Exception("Pilha esta vazia");
+        }
+        int temp=0;
+        for(int i = 0; i <= topo; i++){
+           f2.enqueue(temp =f1.dequeue());
+           f1.enqueue(f2.dequeue());
+        }
+        return temp;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return f1.isEmpty();
     }
 
     @Override
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return f1.isFull();
     }
-    
 }
+

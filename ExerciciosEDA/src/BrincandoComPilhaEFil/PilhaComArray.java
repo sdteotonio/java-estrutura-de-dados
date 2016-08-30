@@ -9,7 +9,7 @@ package BrincandoComPilhaEFil;
  * @author Sèrgio Davi
  */
 public class PilhaComArray implements Pilha_IF{
-    private int[] vetorAUX = new int[5];
+    private int[] vetorAUX = new int[10];
     private int topo=0;
     @Override
     public void push(int element) throws Exception {
