@@ -1,4 +1,4 @@
-package BrincandoComPilhaEFil;
+package implementacao3;
 
 public interface Pilha_IF {
 	public void push(int element) throws Exception;
